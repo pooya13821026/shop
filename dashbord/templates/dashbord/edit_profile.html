@@ -1,0 +1,41 @@
+{% extends 'sheard/index.html' %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}داشبورد{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>حساب من</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-area mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="ml-auto mr-auto col-lg-9">
+                    <div class="checkout-wrapper">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

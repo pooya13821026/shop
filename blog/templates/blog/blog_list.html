@@ -1,0 +1,173 @@
+{% extends 'sheard/index.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}وبلاگ{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>وبلاگ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-category-area blog-grid mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                    {% for blog in blog_list %}
+                        <div class="row mb-50px">
+                            <div class="col-lg-5 col-md-6">
+                                <div class="single-blog-post blog-list-post">
+                                    <div class="blog-post-media">
+                                        <div class="blog-image">
+                                            <a href="{{ blog.get_absolute_url }}">
+                                                {% thumbnail blog.img "330x300" crop="center" as im %}
+                                                    <img src="{{ im.url }}"
+                                                         alt="{{ blog.title }}">
+                                                {% endthumbnail %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 align-self-center align-items-center">
+                                <div class="blog-post-content-inner mt-lm-30px">
+                                    <h4 class="blog-title"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
+                                    </h4>
+                                    <ul class="blog-page-meta">
+                                        <li>
+                                            <a><i class="ion-person"></i>{{ blog.author }}</a>
+                                        </li>
+                                        <li>
+                                            <a><i class="ion-calendar"></i>{{ blog.create_time | persian_deta }}</a>
+                                        </li>
+                                    </ul>
+                                    <p>{{ blog.subtitle }}</p>
+                                    <a class="read-more-btn" href="{{ blog.get_absolute_url }}"> مطالعه بیشتر <i
+                                            class="ion-android-arrow-dropright-circle"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="pro-pagination-style text-center">
+                        <ul>
+                            <li>
+                                <a class="prev" href="#"><i class="ion-ios-arrow-right"></i></a>
+                            </li>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li>
+                                <a class="next" href="#"><i class="ion-ios-arrow-left"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--  Pagination Area End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="col-lg-3 order-lg-first col-md-12 order-md-last mt-lm-50px mt-md-50px">
+                    <div class="left-sidebar shop-sidebar-wrap">
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget">
+                            <h3 class="sidebar-title">جستجو</h3>
+                            <div class="search-widget">
+                                <form action="#">
+                                    <input placeholder="جستجو ..." type="text">
+                                    <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">دسته بندی ها</h3>
+
+                            {% render_partial 'blog.views.blog_categris' %}
+
+                        </div>
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">مطالب اخیر</h3>
+
+                            <div class="recent-post-widget">
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side">
+                                        <a href="blog-single-left-sidebar.html"><img
+                                                src="../../assets/images/blog-image/blog-1.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="blog-single-left-sidebar.html">لورم ایپسوم متن ساختگی با سادگی </a>
+                                        </h5>
+                                        <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side">
+                                        <a href="blog-single-left-sidebar.html"><img
+                                                src="../../assets/images/blog-image/blog-2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="blog-single-left-sidebar.html">لورم ایپسوم متن ساختگی با سادگی </a>
+                                        </h5>
+                                        <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side">
+                                        <a href="blog-single-left-sidebar.html"><img
+                                                src="../../assets/images/blog-image/blog-3.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="blog-single-left-sidebar.html">لورم ایپسوم متن ساختگی با سادگی </a>
+                                        </h5>
+                                        <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side m-0px">
+                                        <a href="blog-single-left-sidebar.html"><img
+                                                src="../../assets/images/blog-image/blog-4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="blog-single-left-sidebar.html">لورم ایپسوم متن ساختگی با سادگی </a>
+                                        </h5>
+                                        <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">برچسب ها</h3>
+
+                            <div class="sidebar-widget-tag">
+                                <ul>
+                                    <li><a href="#">لپ تاپ</a></li>
+                                    <li><a href="#">کنسول بازی</a></li>
+                                    <li><a href="#">کامپیوتر</a></li>
+                                    <li><a href="#">لوازم جانبی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                    </div>
+                </div>
+                <!-- Sidebar Area End -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

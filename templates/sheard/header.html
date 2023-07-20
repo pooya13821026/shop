@@ -1,0 +1,289 @@
+{% load thumbnail %}
+<header class="header-wrapper">
+    <div class="header-nav">
+        <div class="container">
+            <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
+                <div class="header-static-nav">
+                    <p>به فروشگاه روزر خوش آمدید!</p>
+                </div>
+                <div class="header-menu-nav">
+                    <ul class="menu-nav">
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <div class="dropdown">
+                                    <a href="{% url 'dashbord' %}">
+                                        <button type="button" id="dropdownMenuButton-2">داشبورد</button>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="{% url 'logout' %}">
+                                        <button type="button" id="dropdownMenuButton-2">خروج از حساب</button>
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li>
+                                <div class="dropdown">
+                                    <a href="{% url 'register' %}">
+                                        <button type="button" id="dropdownMenuButton">ثبت نام</button>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="{% url 'login' %}">
+                                        <button type="button" id="dropdownMenuButton-2">ورود</button>
+                                    </a>
+                                </div>
+                            </li>
+                        {% endif %}
+                        <li class="pr-0">
+                            <div class="dropdown">
+                                <button type="button" id="dropdownMenuButton-3" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <img src="../../assets/images/flag/1.jpg" alt=""> فارسی <i
+                                        class="ion-ios-arrow-down"></i>
+                                </button>
+
+                                <ul class="dropdown-menu animation slideDownIn" aria-labelledby="dropdownMenuButton-3">
+                                    <li>
+                                        <a href="#"><img src="../../assets/images/flag/1.jpg" alt=""> فارسی</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="../../assets/images/flag/2.jpg" alt=""> انگلیسی</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-top bg-white ptb-30px d-xl-block d-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="logo">
+                        {% thumbnail site_setting.logo "183x51" crop="center" as im %}
+                            <img class="second-img" src="{{ im.url }}"
+                                 alt="در حال بارگیری">
+                        {% endthumbnail %}
+                    </div>
+                </div>
+                <div class="col-md-10 align-self-center">
+                    <div class="header-right-element d-flex">
+                        <div class="search-element media-body">
+                            <form class="d-flex" action="{% url 'search' %}" method="get">
+                                <div class="search-category">
+                                    <select>
+                                        <option value="0">دسته بندی ها</option>
+                                        <option value="12">لپ تاپ</option>
+                                        <option value="68">تلفن همراه</option>
+                                        <option value="104">کنسول بازی</option>
+                                        <option value="105">پخش کننده موسیقی</option>
+                                        <option value="106">تلویزیون</option>
+                                        <option value="107">ساعت</option>
+                                        <option value="108">لوازم جانبی</option>
+                                        <option value="109">دوربین</option>
+                                        <option value="110">لوازم خانه</option>
+                                    </select>
+                                </div>
+                                <input type="text" placeholder="جستجو ... " name="search">
+                                <button type="submit"><i class="icon-magnifier"></i></button>
+                            </form>
+                        </div>
+                        <div class="contact-link">
+                            <div class="phone tm-ltr">
+                                <p class="tm-rtl">تلفن ما :</p>
+                                <a class="tm-ltr" href="tel:{{ site_setting.number1 }}">{{ site_setting.number1 }}</a>
+                            </div>
+                        </div>
+                        <!--Cart info Start -->
+                        <div class="header-tools d-flex">
+                            <div class="cart-info d-flex align-self-center">
+                                <a href="compare.html" class="shuffle" data-number="3"><i class="icon-shuffle"></i></a>
+                                <a href="#offcanvas-wishlist" class="heart offcanvas-toggle" data-number="3"><i
+                                        class="icon-heart"></i></a>
+                                <a href="{% url 'user_cart' %}" class="bag" data-number="3"><span>200.000 تومان</span><i
+                                        class="icon-bag" style="float: right; margin-top: 5px;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-menu bg-blue sticky-nav d-xl-block d-none padding-0px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 custom-col-2">
+                    <div class="header-menu-vertical">
+                        <h4 class="menu-title">دسته بندی ها</h4>
+                        <ul class="menu-content display-none">
+                            <li class="menu-item">
+                                <a href="#">لوازم الکترونیکی <i class="ion-ios-arrow-left"></i></a>
+                                <ul class="sub-menu flex-wrap">
+                                    <li>
+                                        <a href="#">
+                                            <span> <strong>عنوان شماره یک</strong></span>
+                                        </a>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                            <li><a href="#">زیر عنوان 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span><strong>عنوان شماره دو</strong></span>
+                                        </a>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                            <li><a href="#">زیر عنوان 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span><strong>عنوان شماره سه</strong></span>
+                                        </a>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                            <li><a href="#">زیر عنوان 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span><strong>عنوان شماره چهار</strong></span>
+                                        </a>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                            <li><a href="#">زیر عنوان 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span><strong>عنوان شماره پنج</strong></span>
+                                        </a>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                            <li><a href="#">زیر عنوان 5</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <img src="../../assets/images/menu-image/banner-mega1.jpg" alt="">
+                                    </li>
+                                </ul>
+                                <!-- sub menu -->
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">بازی <i class="ion-ios-arrow-left"></i></a>
+                                <ul class="sub-menu sub-menu-2">
+                                    <li>
+                                        <ul class="submenu-item">
+                                            <li><a href="#">زیر عنوان 1</a></li>
+                                            <li><a href="#">زیر عنوان 2</a></li>
+                                            <li><a href="#">زیر عنوان 3</a></li>
+                                            <li><a href="#">زیر عنوان 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- sub menu -->
+                            </li>
+                            <li class="menu-item"><a href="#">تلویزیون</a></li>
+                            <li class="menu-item"><a href="#">دوربین دیجیتال</a></li>
+                            <li class="menu-item"><a href="#">هدفون</a></li>
+                            <li class="menu-item"><a href="#">لوازم جانبی</a></li>
+                            <li class="menu-item"><a href="#">ساعت هوشمند</a></li>
+                            <li class="menu-item"><a href="#">کنسول بازی</a></li>
+                            <li class="menu-item" style="display: none;"><a href="#">لوازم خانگی</a></li>
+                            <li class="expand"><a href="javascript:;"><span><i class="ion-android-add"></i>بیشتر</span></a>
+                            </li>
+                        </ul>
+                        <!-- menu content -->
+                    </div>
+                    <!-- header menu vertical -->
+                </div>
+                <div class="col-lg-9 custom-col-2">
+                    <div class="header-horizontal-menu">
+                        <ul class="menu-content">
+                            <li class="active menu-dropdown">
+                                <a href="{% url 'home' %}">صفحه اصلی</a>
+                            </li>
+                            <li class="menu-dropdown">
+                                <a href="{% url 'product_list' %}">فروشگاه</a>
+                            </li>
+                            <li class="menu-dropdown">
+                                <a href="{% url 'about' %}">درباره ما</a>
+                            </li>
+                            <li class="menu-dropdown">
+                                <a href="{% url 'blog_list' %}">وبلاگ</a>
+                            </li>
+                            <li><a href="{% url 'contact_us' %}">ارتباط با ما</a></li>
+                        </ul>
+                    </div>
+                    <!-- header horizontal menu -->
+                    <div class="intro-text-shipping text-end">
+                        <div class="free-ship">{{ site_setting.slogan }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="mobile-header d-xl-none sticky-nav bg-white ptb-10px">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col">
+                <div class="header-logo">
+                    <a href="index.html"><img class="img-responsive" src="../../assets/images/logo/logo.png"
+                                              alt="logo.jpg"></a>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="header-tools justify-content-end">
+                    <div class="cart-info d-flex align-self-center">
+                        <a href="compare.html" class="shuffle d-xs-none" data-number="3"><i
+                                class="icon-shuffle"></i></a>
+                        <a href="#offcanvas-wishlist" class="heart offcanvas-toggle d-xs-none" data-number="3"><i
+                                class="icon-heart"></i></a>
+                        <a href="#offcanvas-cart" class="bag offcanvas-toggle"
+                           data-number="3"><span>200.000 تومان</span><i class="icon-bag"
+                                                                        style="float: right; margin-top: 8px;"></i></a>
+                    </div>
+                    <div class="mobile-menu-toggle">
+                        <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
+                            <svg viewBox="0 0 800 600">
+                                <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+                                      id="top"></path>
+                                <path d="M300,320 L540,320" id="middle"></path>
+                                <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+                                      id="bottom"
+                                      transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,26 @@
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        {% for cat in product_categoriss %}
+            <div class="card-header" id="headingOne">
+                {% if cat.parent == None %}
+                    <a data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                       aria-expanded="false" aria-controls="collapseOne"
+                       class="collapsed">{{ cat.title }}</a>
+                {% endif %}
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
+                 style="">
+                <div class="card-body">
+                    <ul class="category-list">
+                        <li>
+                            {% if cat.children.all %}
+                                <a href="{% url 'product_category' category=cat.url_title %}">{{ cat.title }}</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+

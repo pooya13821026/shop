@@ -1,0 +1,126 @@
+{% load poll_extras %}
+{% load thumbnail %}
+{% if order.orderdetail_set.all %}
+    <div class="container">
+        <h3 class="cart-page-title">سبد خرید شما</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <form action="#">
+                    <div class="table-content table-responsive cart-table-content">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>تصویر</th>
+                                <th>نام محصول</th>
+                                <th>قیمت</th>
+                                <th>تعداد</th>
+                                <th>جمع</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in order.orderdetail_set.all %}
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <a>
+                                            {% thumbnail item.product.image1 "150x120" crop="center" as im %}
+                                                <img class="img-responsive" src="{{ im.url }}"
+                                                     alt="{{ item.product.title }}">
+                                            {% endthumbnail %}
+                                        </a>
+                                    </td>
+                                    <td class="product-name"><a>{{ item.product.title }}</a></td>
+                                    <td class="product-price-cart"><span
+                                            class="amount">{{ item.product.orginal_price | price_separator }}</span>
+                                    </td>
+                                    <td class="product-quantity">
+                                        <div class="cart-plus-minus">
+                                            <div class="dec qtybutton">
+                                                <a onclick="changeItemCount({{ item.id }},'decrease')"
+                                                >-</a>
+                                            </div>
+                                            <input class="cart-plus-minus-box" type="number"
+                                                   value="{{ item.count }}" min="1">
+                                            <div class="inc qtybutton">
+                                                <a onclick="changeItemCount({{ item.id }},'increase')"
+                                                >+</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal">{{ item.getPriceCount | price_separator }}</td>
+                                    <td class="product-remove">
+                                        <a onclick="deleteFromOrderItems({{ item.id }})"><i class="icon-close"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="cart-shiping-update-wrapper">
+                                <div class="cart-shiping-update">
+                                    <a href="{% url 'product_list' %}">به خرید ادامه دهید</a>
+                                </div>
+                                <div class="cart-clear">
+                                    <button type="button">بروزرسانی سبد خرید</button>
+                                    <a>پاک کردن سبد خرید</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-lm-30px"></div>
+                    <div class="col-lg-4 col-md-6 mb-lm-30px">
+                        <div class="discount-code-wrapper">
+                            <div class="title-wrap">
+                                <h4 class="cart-bottom-title section-bg-gray">ثبت کد تخفیف</h4>
+                            </div>
+                            <div class="discount-code">
+                                <p>اگر کد تخفیف دارید، وارد نمایید.</p>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {{ discount_form }}
+                                    <button class="cart-btn-2" type="submit">ثبت کد تخفیف</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 mt-md-30px">
+                        <div class="grand-totall">
+                            <div class="title-wrap">
+                                <h4 class="cart-bottom-title section-bg-gary-cart">مجموع سبد خرید</h4>
+                            </div>
+                            <h5>جمع محصولات <span>{{ total | price_separator }}</span></h5>
+                            <div class="total-shipping">
+                                <h5>انتخاب نوع ارسال</h5>
+                                <ul>
+                                    <li><input type="checkbox"> پست پیشتاز <span>30.000 تومان</span></li>
+                                    <li><input type="checkbox"> پست سفارشی <span>20.000 تومان</span></li>
+                                </ul>
+                            </div>
+                            <h4 class="grand-totall-title">جمع نهایی <span>150.000 تومان</span></h4>
+                            <a href="#">تسویه حساب</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="alert alert-info">
+                    <p class="text-center" style="color: black">محصولی در سبد خرید شما وجود ندارد</p>
+                </div>
+            </div>
+            <div class="col-6 mb-6">
+                <a href="{% url 'product_list' %}">
+                    <button class="btn btn-primary">برو به فروشگاه</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}

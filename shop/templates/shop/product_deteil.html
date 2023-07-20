@@ -1,0 +1,339 @@
+{% extends 'sheard/index.html' %}
+{% load poll_extras %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}جزییات محصول{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>صفحه محصول</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="product-details-area mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="product-details-img product-details-tab">
+                        <div class="zoompro-wrap zoompro-2">
+                            <div class="zoompro-border zoompro-span">
+                                {% thumbnail productlist.image1 "690x690" crop="center" as im %}
+                                    <img src="{{ im.url }}" id="main_img" alt="{{ productlist.title }}">
+                                {% endthumbnail %}
+                            </div>
+                        </div>
+                        <div id="gallery"
+                             class="product-dec-slider-2 swiper-container swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl">
+                            <div class="swiper-wrapper" id="swiper-wrapper-d51c1e7de7ddd964" aria-live="polite"
+                                 style="transform: translate3d(0px, 0px, 0px);">
+                                {% for galery in gallery %}
+                                    <div class="swiper-slide swiper-slide-active" role="group"
+                                         style="width: 165px; margin-left: 10px;">
+                                        <a class="active" onclick="showlargeImg('{{ galery.img.url }}')">
+                                            {% thumbnail galery.img "88x88" crop="center" as im %}
+                                                <img class="img-responsive" src="{{ im.url }}"
+                                                     alt="{{ galery.product.title }}">
+                                            {% endthumbnail %}
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="product-details-content">
+                        <h2>{{ productlist.title }}</h2>
+                        <p class="reference">امکان مرجوعی :<span> وجود دارد</span></p>
+                        <p class="reference">تاریخ ثبت :<span> {{ productlist.create_date | persian_deta }}</span></p>
+                        <div class="pro-details-rating-wrap">
+                            <div class="rating-product">
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                                <i class="ion-android-star"></i>
+                            </div>
+                            <span class="read-review"><a class="reviews" href="#">مشاهده نظرات (1)</a></span>
+                        </div>
+                        <div class="pricing-meta">
+                            <ul>
+                                <li class="old-price not-cut">{{ productlist.Discounted_price }}</li>
+                            </ul>
+                        </div>
+                        <div class="pro-details-list">
+                            <p>{{ productlist.short_des }}</p>
+                            <ul>
+                                <li>- ویژگی اول محصول</li>
+                                <li>- ویژگی دوم محصول</li>
+                                <li>- ویژگی سوم محصول</li>
+                            </ul>
+                        </div>
+                        <div class="pro-details-quality mt-0px">
+                            <div class="cart-plus-minus">
+                                <div class="dec qtybutton">-</div>
+                                <input id="qtybutton" class="cart-plus-minus-box" type="number" name="qtybutton"
+                                       value="1" min="1">
+                                <div class="inc qtybutton">+</div>
+                            </div>
+                            <div class="pro-details-cart btn-hover">
+                                <a onclick="addProduct({{ productlist.id }})"> افزودن به سبد خرید</a>
+                            </div>
+                        </div>
+                        <div class="pro-details-wish-com">
+                            <div class="pro-details-wishlist">
+                                <a href="#"><i class="icon-heart"></i>افزودن به لیست علاقه مندی ها</a>
+                            </div>
+                            <div class="pro-details-compare">
+                                <a href="#"><i class="icon-shuffle"></i>مقایسه محصول</a>
+                            </div>
+                        </div>
+                        <div class="pro-details-social-info">
+                            <span>اشتراک گذاری :</span>
+                            <div class="social-info">
+                                <ul>
+                                    <li>
+                                        <a title="Facebook" href="#"><i class="ion-social-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Twitter" href="#"><i class="ion-social-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Google+" href="#"><i class="ion-social-google"></i></a>
+                                    </li>
+                                    <li>
+                                        <a title="Instagram" href="#"><i class="ion-social-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pro-details-policy">
+                            <ul>
+                                <li><img src="../../assets/images/icons/policy.png" alt=""><span>سیاست امنیتی : توضیحات مربوط به این ویژگی</span>
+                                </li>
+                                <li><img src="../../assets/images/icons/policy-2.png" alt=""><span>حمل و نقل : توضیحات مربوط به این ویژگی</span>
+                                </li>
+                                <li><img src="../../assets/images/icons/policy-3.png" alt=""><span>ضمانت مرجوعی : توضیحات مربوط به این ویژگی</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="description-review-area mb-60px">
+        <div class="container">
+            <div class="description-review-wrapper">
+                <div class="description-review-topbar nav">
+                    <a data-bs-toggle="tab" href="#des-details1">توضیحات</a>
+                    <a class="active" data-bs-toggle="tab" href="#des-details2">جزئیات محصول</a>
+                    <a data-bs-toggle="tab" href="#des_details3">نظرات ({{ comment.count }})</a>
+                </div>
+                <div class="tab-content description-review-bottom">
+                    <div id="des-details2" class="tab-pane active">
+                        <div class="product-anotherinfo-wrapper">
+                            <ul>
+                                <li><span>وزن</span> 400 گرم</li>
+                                <li><span>ابعاد</span>10.10.15 سانتی متر</li>
+                                <li><span>رنگ</span>سفید ، مشکی و خاکستری</li>
+                                <li><span>سایر اطلاعات</span>محصول دارای دفترچه راهنما می باشد.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="des-details1" class="tab-pane">
+                        <div class="product-description-wrapper">
+                            <p>{{ productlist.lang_des }}</p>
+                        </div>
+                    </div>
+                    <div id="des_details3" class="tab-pane">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="review-wrapper">
+                                    {% for com in comment %}
+                                        <div class="single-review">
+                                            <div class="review-img">
+                                                <img src="{{ com.user.avatar.url }}" alt="{{ com.user.username }}">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>{{ com.user }}</h4>
+                                                        </div>
+                                                        <div class="rating-product">
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                            <i class="ion-android-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">پاسخ دادن</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>{{ com.comment_text }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% for com in com.productcomment_set.all %}
+                                            <div class="single-review child-review">
+                                                <div class="review-img">
+                                                    <img src="{{ com.user.avatar.url }}"
+                                                         alt="{{ com.user.username }}">
+                                                </div>
+                                                <div class="review-content">
+                                                    <div class="review-top-wrap">
+                                                        <div class="review-left">
+                                                            <div class="review-name">
+                                                                <h4>{{ com.user }}</h4>
+                                                            </div>
+                                                            <div class="rating-product">
+                                                                <i class="ion-android-star"></i>
+                                                                <i class="ion-android-star"></i>
+                                                                <i class="ion-android-star"></i>
+                                                                <i class="ion-android-star"></i>
+                                                                <i class="ion-android-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-left">
+                                                            <a href="#">پاسخ دادن</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-bottom">
+                                                        <p>{{ com.comment_text }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="ratting-form-wrapper pl-50">
+                                    <h3>ارسال نظر برای این محصول</h3><br>
+                                    {% if request.user.is_authenticated %}
+                                        <div class="ratting-form">
+                                            <form action="" method="post">
+                                                <input type="hidden" value="" id="parent_id">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <textarea
+                                                                    placeholder="متن پیام" id="comment"></textarea>
+                                                            <a class="submit" type="submit"
+                                                               onclick="sendcommentproduct({{ productlist.id }})">ارسال</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    {% else %}
+                                        <div class="mr-6">
+                                            <p>برای درج نظر ابتدا وارد<a href="{% url 'login' %}"> حساب کاربری</a> شوید
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feature-area single-product-responsive  mb-30px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h2 class="section-heading">محصولات مشابه</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-slider-two slider-nav-style-1 swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl">
+                <div class="feature-slider-wrapper swiper-wrapper" id="swiper-wrapper-23a269cc47c8b963"
+                     aria-live="polite" style="transform: translate3d(0px, 0px, 0px);">
+                    {% for related in related_product %}
+                        <div class="feature-slider-item swiper-slide swiper-slide-active" role="group"
+                             aria-label="1 / 17"
+                             style="width: 230px;">
+                            <article class="list-product">
+                                <div class="img-block">
+                                    <a href="{{ related.get_absolute_url }}" class="thumbnail">
+                                        <img class="first-img" src="{{ related.image1.url }}" alt="{{ related.title }}">
+                                        <img class="second-img" src="{{ related.image2.url }}"
+                                             alt="{{ related.title }}">
+                                    </a>
+                                    <div class="quick-view">
+                                        <a class="quick_view" href="#" data-link-action="quickview" title="مشاهده سریع"
+                                           data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="icon-magnifier icons"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="product-flag">
+                                    <li class="new">جدید</li>
+                                </ul>
+                                <div class="product-decs">
+                                    <a class="inner-link"
+                                       href="{{ related.get_absolute_url }}"><span>{{ related.title }}</span></a>
+                                    <h2><a href="{{ related.get_absolute_url }}"
+                                           class="product-link">{{ related.short_des }}</a>
+                                    </h2>
+                                    <div class="rating-product">
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                        <i class="ion-android-star"></i>
+                                    </div>
+                                    <div class="pricing-meta">
+                                        <ul>
+                                            <li class="old-price not-cut">{{ related.orginal_price }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="add-to-link">
+                                    <ul>
+                                        <li class="cart"><a class="cart-btn" href="#">خرید</a></li>
+                                        <li>
+                                            <a href="wishlist.html"><i class="icon-heart"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-buttons">
+                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"
+                         aria-controls="swiper-wrapper-d304cb558b92464c" aria-disabled="false"></div>
+                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                         aria-label="Previous slide" aria-controls="swiper-wrapper-d304cb558b92464c"
+                         aria-disabled="true"></div>
+                </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'sheard/index.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}سبد خرید{% endblock %}
+</head>
+<body>
+{% block main %}
+    <div id="item-content" class="cart-main-area mtb-60px">
+        <h3 class="cart-page-title">سبد خرید شما</h3>
+        {% include 'dashbord/component/user_cart_component.html' %}
+    </div>
+{% endblock %}
+</body>
+</html>

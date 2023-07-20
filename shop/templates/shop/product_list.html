@@ -1,0 +1,263 @@
+{% extends 'sheard/index.html' %}
+{% load render_partial %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}فروشگاه{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>فروشگاه</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-category-area mt-30px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                    <div class="shop-top-bar d-flex">
+                        <div class="shop-tab nav d-flex">
+                            <a class="active" href="#shop-1" data-bs-toggle="tab">
+                                <i class="fa fa-th"></i>
+                            </a>
+                            <p>{{ object_list.count }}</p>
+                        </div>
+                        <div class="select-shoing-wrap d-flex">
+                            <div class="shot-product">
+                                <p>مرتب سازی :</p>
+                            </div>
+                            <div class="shop-select">
+                                <select>
+                                    <option value="">جدید ترین</option>
+                                    <option value="">قدیمی ترین</option>
+                                    <option value="">محبوب ترین</option>
+                                    <option value="">پرفروش ترین</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop-bottom-area mt-35">
+                        <div class="tab-content jump">
+                            <div id="shop-1" class="tab-pane active">
+                                <div class="row responsive-md-class responsive-xl-class responsive-lg-class">
+                                    {% for products in object_list %}
+                                        <div class="col-xl-3 col-md-4 col-sm-6 ">
+                                            <article class="list-product">
+                                                <div class="img-block">
+                                                    <a href="{{ products.get_absolute_url }}" class="thumbnail">
+                                                        {% thumbnail products.image1 "360x360" crop="center" as im %}
+                                                            <img class="first-img" src="{{ im.url }}"
+                                                                 alt="{{ products.title }}">
+                                                        {% endthumbnail %}
+                                                        {% thumbnail products.image2 "360x360" crop="center" as im %}
+                                                            <img class="second-img" src="{{ im.url }}"
+                                                                 alt="{{ products.title }}">
+                                                        {% endthumbnail %}
+                                                    </a>
+                                                    <div class="quick-view">
+                                                        <a class="quick_view" href="{{ products.get_absolute_url }}"
+                                                           data-link-action="quickview"
+                                                           title="مشاهده سریع" data-bs-toggle="modal"
+                                                           data-bs-target="#exampleModal">
+                                                            <i class="ion-ios-search-strong"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <ul class="product-flag">
+                                                    <li class="new">جدید</li>
+                                                </ul>
+                                                <div class="product-decs">
+                                                    <a class="inner-link"
+                                                       href="{{ products.get_absolute_url }}"><span>{{ products.title }}</span></a>
+                                                    <h2><a href="{{ products.get_absolute_url }}"
+                                                           class="product-link">{{ products.short_des }}</a></h2>
+                                                    <div class="rating-product">
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                        <i class="ion-android-star"></i>
+                                                    </div>
+                                                    <div class="pricing-meta">
+                                                        <ul>
+                                                            <li class="old-price">{{ products.orginal_price }}</li>
+                                                            <li class="current-price">{{ products.Discounted_price }}</li>
+                                                            <li class="discount-price">
+                                                                -{{ products.discount_percent }}%
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="add-to-link">
+                                                    <ul>
+                                                        <li class="cart"><a class="cart-btn"
+                                                                            href="{{ products.get_absolute_url }}">خرید</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{% url 'product_like' products.id %}"><i
+                                                                    class="icon-like">{{ products.like.count }}</i></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{% url 'product_dislike' products.id %}"><i
+                                                                    class="icon-dislike">{{ products.dislike.count }}</i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pro-pagination-style text-center mb-60px mt-30px">
+                            <ul>
+                                <li>
+                                    <a class="prev" href="#"><i class="ion-ios-arrow-right"></i></a>
+                                </li>
+                                <li><a class="active" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li>
+                                    <a class="next" href="#"><i class="ion-ios-arrow-left"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--  Pagination Area End -->
+                    </div>
+                    <!-- Shop Bottom Area End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="col-lg-3 order-lg-first col-md-12 order-md-last mb-md-60px mb-lm-60px">
+                    <div class="shop-sidebar-wrap">
+                        <div class="sidebar-widget padding-30px bg-light-gray-2 mb-30px">
+                            <h3 class="sidebar-title">برند ها</h3>
+
+                            {% render_partial 'shop.views.product_brand' %}
+
+                        </div>
+
+                        <div class="sidebar-widget padding-30px bg-light-gray-2 mb-30px">
+                            <h3 class="sidebar-title">دسته بندی ها</h3>
+
+                            {% render_partial 'shop.views.product_categris' %}
+
+                        </div>
+                        <div class="sidebar-widget-group mt-20 padding-30px">
+                            <h3 class="sidebar-title">فیلتر</h3>
+                            <div class="sidebar-widget mt-20">
+                                <h4 class="pro-sidebar-title">قیمت</h4>
+                                <div class="price-filter mt-10">
+                                    <div class="price-slider-amount">
+                                        <input type="text" id="amount" name="price" placeholder="Add Your Price">
+                                    </div>
+                                    <div id="slider-range"
+                                         class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                        <div class="ui-slider-range ui-corner-all ui-widget-header"
+                                             style="left: 0%; width: 100%;"></div>
+                                        <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"
+                                              style="left: 0%;"></span><span tabindex="0"
+                                                                             class="ui-slider-handle ui-corner-all ui-state-default"
+                                                                             style="left: 100%;"></span></div>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget mt-30">
+                                <h4 class="pro-sidebar-title">اندازه</h4>
+                                <div class="sidebar-widget-list">
+                                    <ul>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox"> <a href="#">اندازه 1<span>(4)</span> </a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">اندازه
+                                                2<span>(4)</span></a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">اندازه 3<span>(4)</span>
+                                            </a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">اندازه 4<span>(4)</span>
+                                            </a>
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget no-cba mt-20">
+                                <h4 class="pro-sidebar-title">رنگ</h4>
+                                <div class="sidebar-widget-list">
+                                    <ul>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox"> <a href="#">خاکستری<span>(2)</span> </a>
+                                                <span class="checkmark grey"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">سفید<span>(4)</span></a>
+                                                <span class="checkmark white"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">سیاه<span>(4)</span> </a>
+                                                <span class="checkmark black"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="sidebar-widget-list-left">
+                                                <input type="checkbox" value=""> <a href="#">شتری<span>(4)</span> </a>
+                                                <span class="checkmark brown"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar-widget tag mt-30px">
+                            <div class="main-heading">
+                                <h3 class="sidebar-title">برچسب ها</h3>
+                            </div>
+                            <div class="sidebar-widget-tag">
+                                <ul>
+                                    <li><a href="#">دوربین</a></li>
+                                    <li><a href="#">کامپیوتر</a></li>
+                                    <li><a href="#">لپ تاپ</a></li>
+                                    <li><a href="#">لوازم جانبی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

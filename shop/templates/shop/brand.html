@@ -1,0 +1,9 @@
+{% for bra in brand %}
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div id="headingOne">
+                <a href="{% url 'product_brand_list' br=bra.url_tital %}">{{ bra.tital }}</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

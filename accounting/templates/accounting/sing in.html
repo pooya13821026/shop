@@ -1,0 +1,62 @@
+{% extends 'sheard/index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ورود{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>ورود</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <h4>ورود</h4>
+                        </div>
+                        <div>
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form action="{% url 'login' %}" method="post">
+                                        {% csrf_token %}
+                                        {{ login.username.label_tag }}
+                                        {{ login.username }}
+                                        {{ login.username.errors }}
+
+                                        {{ login.password.label_tag }}
+                                        {{ login.password }}
+                                        {{ login.password.errors }}
+
+                                        <div class="button-box">
+                                            <div class="login-toggle-btn">
+                                                <a href="{% url 'forgetpass' %}">بازیابی گذرواژه</a>
+                                            </div>
+                                            <button type="submit"><span>ورود</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

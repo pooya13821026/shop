@@ -1,0 +1,76 @@
+{% extends 'sheard/index.html' %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}درباره ما{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'home' %}">صفحه اصلی</a>
+                            </li>
+                            <li>درباره ما</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="about-area mtb-60px">
+        <div class="container">
+            <div class="row">
+                {% for about in object_list %}
+                    <div class="col-lg-6">
+                        <div class="about-left-image mb-md-30px mb-lm-30px ">
+                            {% thumbnail about.img "690x410" crop="center" as im %}
+                                <img class="img-responsive" src="{{ im.url }}"
+                                     alt="{{ products.title }}">
+                            {% endthumbnail %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <div class="about-title">
+                                <h2>{{ about.title }}</h2>
+                            </div>
+                            <p class="mb-30px">{{ about.des }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% for about in object_list %}
+                <div class="row mt-60px">
+                    <div class="col-md-4 mb-lm-30px">
+                        <div class="single-about">
+                            <h4>{{ about.subtitle1 }}</h4>
+                            <p>{{ about.sub_des1 }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-lm-30px">
+                        <div class="single-about">
+                            <h4>{{ about.subtitle2 }}</h4>
+                            <p>{{ about.sub_des2 }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-about">
+                            <h4>{{ about.subtitle3 }}</h4>
+                            <p>{{ about.sub_des3 }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+</body>
+</html>

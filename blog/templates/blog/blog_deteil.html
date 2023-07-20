@@ -1,0 +1,345 @@
+{% extends 'sheard/index.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}جزییات وبلاگ{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'home' %}">صفحه اصلی</a>
+                            </li>
+                            <li>وبلاگ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-category-area single-blog-page mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                    <div class="blog-posts ">
+                        <div class="single-blog-post blog-grid-post">
+                            <div class="blog-post-media">
+                                <div class="blog-image single-blog">
+                                    {% thumbnail blog.img "690x446" crop="center" as im %}
+                                        <img src="{{ im.url }}"
+                                             alt="{{ blog.title }}">
+                                    {% endthumbnail %}
+                                </div>
+                            </div>
+                            <div class="blog-post-content-inner mt-30px">
+                                <h4 class="blog-title"><a>{{ blog.title }}</a></h4>
+                                <ul class="blog-page-meta">
+                                    <li><a><i class="ion-person"></i>{{ blog.author }}</a>
+                                    </li>
+                                    <li><a><i class="ion-calendar"></i>{{ blog.create_time | persian_deta }}
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="single-post-content">
+                                <p class="quate-speech">{{ blog.subtitle }}</p>
+                                <p>{{ blog.band1 }}</p>
+                                <p>{{ blog.band2 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-single-tags-share d-sm-flex justify-content-between">
+                        <div class="blog-single-tags d-flex"><span class="title">برچسب ها : </span>
+                            <ul class="tag-list">
+                                <li>
+                                    <a href="#">لپ تاپ،</a>
+                                </li>
+                                <li>
+                                    <a href="#">کامپیوتر،</a>
+                                </li>
+                                <li>
+                                    <a href="#">تکنولوژی</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="blog-single-share d-flex"><span class="title">اشتراک گذاری :</span>
+                            <ul class="social">
+                                <li><a href="#"><i class="ion-social-facebook"></i></a>
+                                </li>
+                                <li><a href="#"><i class="ion-social-twitter"></i></a>
+                                </li>
+                                <li><a href="#"><i class="ion-social-google"></i></a>
+                                </li>
+                                <li><a href="#"><i class="ion-social-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blog-related-post">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <!-- Section Title -->
+                                <div class="section-title underline-shape">
+                                    <h2>مطالب اخیر</h2>
+                                </div>
+                                <!-- Section Title -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-lm-30px">
+                                <div class="blog-post-media">
+                                    <div class="blog-image single-blog"><a href="blog-single-left-sidebar.html"><img
+                                            class="img-responsive" src="../../assets/images/blog-image/blog-1.jpg"
+                                            alt="blog"></a>
+                                    </div>
+                                </div>
+                                <div class="blog-post-content-inner mt-30px">
+                                    <h4 class="blog-title"><a href="blog-single-left-sidebar.html">لورم ایپسوم متن
+                                        ساختگی با سادگی</a></h4>
+                                    <ul class="blog-page-meta">
+                                        <li><a href="#"><i class="ion-person"></i> ادمین</a>
+                                        </li>
+                                        <li><a href="#"><i class="ion-calendar"></i> 24 بهمن 1401</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-lm-30px">
+                                <div class="blog-post-media">
+                                    <div class="blog-image single-blog"><a href="blog-single-left-sidebar.html"><img
+                                            class="img-responsive" src="../../assets/images/blog-image/blog-2.jpg"
+                                            alt="blog"></a>
+                                    </div>
+                                </div>
+                                <div class="blog-post-content-inner mt-30px">
+                                    <h4 class="blog-title"><a href="blog-single-left-sidebar.html">لورم ایپسوم متن
+                                        ساختگی با سادگی</a></h4>
+                                    <ul class="blog-page-meta">
+                                        <li><a href="#"><i class="ion-person"></i> ادمین</a>
+                                        </li>
+                                        <li><a href="#"><i class="ion-calendar"></i> 24 بهمن 1401</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="blog-post-media">
+                                    <div class="blog-image single-blog"><a href="blog-single-left-sidebar.html"><img
+                                            class="img-responsive" src="../../assets/images/blog-image/blog-3.jpg"
+                                            alt="blog"></a>
+                                    </div>
+                                </div>
+                                <div class="blog-post-content-inner mt-30px">
+                                    <h4 class="blog-title"><a href="blog-single-left-sidebar.html">لورم ایپسوم متن
+                                        ساختگی با سادگی</a></h4>
+                                    <ul class="blog-page-meta">
+                                        <li><a href="#"><i class="ion-person"></i> ادمین</a>
+                                        </li>
+                                        <li><a href="#"><i class="ion-calendar"></i> 24 بهمن 1401</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-area" id="comment-region">
+                        <h2 class="comment-heading">{{ comment.count }} نظر</h2>
+                        <div class="review-wrapper">
+                            {% for com in comment %}
+                                <div class="single-review">
+                                    <div class="review-img">
+                                        <img src="{{ com.user.avatar.url }}" alt="{{ com.user.username }}">
+                                    </div>
+                                    <div class="review-content">
+                                        <div class="review-top-wrap">
+                                            <div class="review-left">
+                                                <div class="review-name">
+                                                    <h4>{{ com.user }}</h4> <span
+                                                        class="date">{{ com.create_date | persian_deta }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="review-left">
+                                                <a onclick="replycomment({{ com.id }})">پاسخ دادن</a>
+                                            </div>
+                                        </div>
+                                        <div class="review-bottom">
+                                            <p>{{ com.comment_text }}</p><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% for reply in com.blogcomment_set.all %}
+                                    <div class="single-review child-review">
+                                        <div class="review-img">
+                                            <img src="{{ reply.user.avatar.url }}" alt="{{ reply.user.username }}">
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-top-wrap">
+                                                <div class="review-left">
+                                                    <div class="review-name">
+                                                        <h4>{{ reply.user }}</h4> <span
+                                                            class="date">{{ reply.create_date | persian_deta }}</span>
+                                                    </div>
+                                                </div>
+                                                {% comment %}<div class="review-left"><a>پاسخ دادن</a>
+                                                </div>{% endcomment %}
+                                            </div>
+                                            <div class="review-bottom">
+                                                <p>{{ reply.comment_text }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="blog-comment-form">
+                            <h2 class="comment-heading" id="comment_answer">ارسال نظر</h2>
+                            <form action="" method="post">
+                                <input type="hidden" value="" id="parent_id">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="single-form">
+                                            <label>* نظر شما :</label>
+                                            <textarea placeholder="متن پیام" required="" id="comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single-form">
+                                            <a type="submit" onclick="sendComment({{ blog.id }})"
+                                               class="submit">ارسال</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="mr-6">
+                            <p>برای درج نظر ابتدا وارد<a href="{% url 'login' %}">حساب کاربری</a>شوید</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="col-lg-3 order-lg-first col-md-12 order-md-last mt-lm-50px mt-md-50px">
+                    <div class="left-sidebar shop-sidebar-wrap">
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget">
+                            <h3 class="sidebar-title">جستجو</h3>
+                            <div class="search-widget">
+                                <form action="#">
+                                    <input placeholder="جستجو ..." type="text">
+                                    <button type="submit">
+                                        <i class="ion-ios-search-strong"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">دسته بندی ها</h3>
+                            <div class="category-post">
+                                <ul>
+                                    <li>
+                                        <a href="#">لپ تاپ (20)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">کنسول بازی (9)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">دسته بازی (5)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">کامپیوتر (11)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">تکنولوژی (3)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">لوازم جانبی (6)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">کیبورد (4)</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">مطالب اخیر</h3>
+                            <div class="recent-post-widget">
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side"><a href="#"><img
+                                            src="../../assets/images/blog-image/blog-1.jpg"
+                                            alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="#">لورم ایپسوم متن ساختگی با سادگی </a></h5> <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side"><a href="#"><img
+                                            src="../../assets/images/blog-image/blog-2.jpg"
+                                            alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="#">لورم ایپسوم متن ساختگی با سادگی </a></h5> <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side"><a href="#"><img
+                                            src="../../assets/images/blog-image/blog-3.jpg"
+                                            alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="#">لورم ایپسوم متن ساختگی با سادگی </a></h5> <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                                <div class="recent-single-post d-flex">
+                                    <div class="thumb-side m-0px"><a href="#"><img
+                                            src="../../assets/images/blog-image/blog-4.jpg" alt=""></a>
+                                    </div>
+                                    <div class="media-side">
+                                        <h5><a href="#">لورم ایپسوم متن ساختگی با سادگی </a></h5> <span class="date">16 آذر 1401</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mt-40px">
+                            <h3 class="sidebar-title">برچسب ها</h3>
+                            <div class="sidebar-widget-tag">
+                                <ul>
+                                    <li>
+                                        <a href="#">لپ تاپ</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">کنسول بازی</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">کامپیوتر</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">لوازم جانبی</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Sidebar single item -->
+                    </div>
+                </div>
+                <!-- Sidebar Area End -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

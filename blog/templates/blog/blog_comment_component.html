@@ -1,0 +1,50 @@
+{% load poll_extras %}
+
+<h2 class="comment-heading">{{ commentss.count }} نظر</h2>
+<div class="review-wrapper">
+    {% for item in commentss %}
+        <div class="single-review">
+            <div class="review-img">
+                <img src="{{ item.user.avatar.url }}" alt="{{ item.user.username }}">
+            </div>
+            <div class="review-content">
+                <div class="review-top-wrap">
+                    <div class="review-left">
+                        <div class="review-name">
+                            <h4>{{ item.user }}</h4> <span
+                                class="date">{{ item.create_date | persian_deta }}</span>
+                        </div>
+                    </div>
+                    <div class="review-left">
+                        <a onclick="replycomment({{ item.id }})">پاسخ دادن</a>
+                    </div>
+                </div>
+                <div class="review-bottom">
+                    <p>{{ item.comment_text }}</p>
+                </div>
+            </div>
+        </div>
+        {% for reply in item.blogcomment_set.all %}
+            <div class="single-review child-review">
+                <div class="review-img">
+                    <img src="{{ reply.user.avatar.url }}" alt="{{ reply.user.username }}">
+                </div>
+                <div class="review-content">
+                    <div class="review-top-wrap">
+                        <div class="review-left">
+                            <div class="review-name">
+                                <h4>{{ reply.user }}</h4> <span
+                                    class="date">{{ reply.create_date | persian_deta }}</span>
+                            </div>
+                        </div>
+                        {% comment %}<div class="review-left"><a>پاسخ دادن</a>
+                                                </div>{% endcomment %}
+                    </div>
+                    <div class="review-bottom">
+                        <p>{{ reply.comment_text }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>

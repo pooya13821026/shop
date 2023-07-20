@@ -1,0 +1,241 @@
+<!-- Footer Area Start -->
+<div class="footer-area">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">درباره ما</h4>
+                            <p class="text-infor">{{ site_setting.footer_about }}</p>
+                            <div class="need-help">
+                                <p class="phone-info">
+                                    تماس با ما :
+                                    <span class="tm-ltr">
+                                                {{ site_setting.number1 }} <br>
+                                                {{ site_setting.number2 }}
+                                            </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% for footer in footer_title %}
+                        <div class="col-md-6 col-lg-2 mb-md-30px mb-lm-30px">
+                            <div class="single-wedge">
+                                <h4 class="footer-herading">{{ footer.title }}</h4>
+                                <div class="footer-links">
+                                    <ul>
+                                        {% for footerlink in footer.footerlink_set.all %}
+                                            <li><a href="{{ footerlink.url_title }}">{{ footerlink.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-6 col-lg-4 ">
+                        <div class="single-wedge">
+                            <h4 class="footer-herading">دریافت خبرنامه</h4>
+                            <div class="subscrib-text">
+                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                    گرافیک است.</p>
+                            </div>
+                            <div id="mc_embed_signup" class="subscribe-form">
+                                <form id="mc-embedded-subscribe-form" class="validate" novalidate="" target="_blank"
+                                      name="mc-embedded-subscribe-form" method="post" action="">
+                                    <div id="mc_embed_signup_scroll" class="mc-form">
+                                        <input class="email" type="email" required=""
+                                               placeholder="ایمیل خود را وارد نمایید..." name="EMAIL" value="">
+                                        <div class="mc-news" aria-hidden="true"
+                                             style="position: absolute; left: -5000px;">
+                                            <input type="text" value="" tabindex="-1"
+                                                   name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                        </div>
+                                        <div class="clear">
+                                            <input id="mc-embedded-subscribe" class="button" type="submit"
+                                                   name="subscribe" value="ثبت">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="social-info">
+                                <ul>
+                                    <li>
+                                        <a href="{{ site_setting.youtube_url }}"><i class="icon-social-youtube"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ site_setting.twitter_url }}"><i class="icon-social-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ site_setting.github_url }}"><i class="icon-social-github"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ site_setting.linkdin_url }}"><i
+                                                class="icon-social-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ site_setting.instagram_url }}"><i class="icon-social-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <p class="copy-text">{{ site_setting.coptright }}</p>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <img class="payment-img" src="../../assets/images/icons/payment.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Area End -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 col-xs-12 mb-lm-100px mb-sm-30px">
+                        <!-- Swiper -->
+                        <div class="swiper-container gallery-top swiper-initialized swiper-horizontal swiper-pointer-events swiper-rtl">
+                            <div class="swiper-wrapper" id="swiper-wrapper-13f96c3793c84bee" aria-live="polite"
+                                 style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 4"
+                                     style="width: 239px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/11.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 4"
+                                     style="width: 239px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/12.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide" role="group" aria-label="3 / 4" style="width: 239px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/13.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide" role="group" aria-label="4 / 4" style="width: 239px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/14.jpg"
+                                         alt="">
+                                </div>
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                        <div class="swiper-container gallery-thumbs swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode swiper-rtl swiper-thumbs">
+                            <div class="swiper-wrapper" id="swiper-wrapper-ab7a166cca0408a7" aria-live="polite"
+                                 style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active"
+                                     role="group" aria-label="1 / 4" style="width: 52.25px; margin-left: 10px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/11.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide swiper-slide-visible swiper-slide-next" role="group"
+                                     aria-label="2 / 4" style="width: 52.25px; margin-left: 10px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/12.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide swiper-slide-visible" role="group" aria-label="3 / 4"
+                                     style="width: 52.25px; margin-left: 10px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/13.jpg"
+                                         alt="">
+                                </div>
+                                <div class="swiper-slide swiper-slide-visible" role="group" aria-label="4 / 4"
+                                     style="width: 52.25px; margin-left: 10px;">
+                                    <img class="img-responsive m-auto" src="../../assets/images/product-image/14.jpg"
+                                         alt="">
+                                </div>
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="product-details-content quickview-content">
+                            <h2>عنوان محصول فروشگاه</h2>
+                            <p class="reference">امکان مرجوعی :<span> وجود دارد</span></p>
+                            <div class="pro-details-rating-wrap">
+                                <div class="rating-product">
+                                    <i class="ion-android-star"></i>
+                                    <i class="ion-android-star"></i>
+                                    <i class="ion-android-star"></i>
+                                    <i class="ion-android-star"></i>
+                                    <i class="ion-android-star"></i>
+                                </div>
+                                <span class="read-review"><a class="reviews" href="#">مشاهده نظرات (1)</a></span>
+                            </div>
+                            <div class="pricing-meta">
+                                <ul>
+                                    <li class="old-price not-cut">50.000 تومان</li>
+                                </ul>
+                            </div>
+                            <p class="quickview-para">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله که لازم است و برای شرایط
+                                فعلی می باشد</p>
+                            <div class="pro-details-size-color">
+                                <div class="pro-details-color-wrap">
+                                    <span>رنگ</span>
+                                    <div class="pro-details-color-content">
+                                        <ul>
+                                            <li class="blue"></li>
+                                            <li class="maroon active"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pro-details-quality">
+                                <div class="cart-plus-minus">
+                                    <div class="dec qtybutton">-</div>
+                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
+                                    <div class="inc qtybutton">+</div>
+                                </div>
+                                <div class="pro-details-cart btn-hover">
+                                    <a href="#"> + افزودن به سبد خرید</a>
+                                </div>
+                            </div>
+                            <div class="pro-details-wish-com">
+                                <div class="pro-details-wishlist">
+                                    <a href="wishlist.html"><i class="ion-android-favorite-outline"></i>افزودن به لیست
+                                        علاقه مندی ها</a>
+                                </div>
+                                <div class="pro-details-compare">
+                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i>مقایسه محصول</a>
+                                </div>
+                            </div>
+                            <div class="pro-details-social-info">
+                                <span>اشتراک گذاری :</span>
+                                <div class="social-info">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="ion-social-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="ion-social-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="ion-social-google"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="ion-social-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->

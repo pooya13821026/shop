@@ -1,0 +1,27 @@
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% include 'sheard/header_refrens.html' %}
+
+</head>
+<body>
+
+{% render_partial 'home.views.header' %}
+
+<div class="offcanvas-overlay"></div>
+
+{% block main %}{% endblock %}
+
+{% render_partial 'home.views.footer' %}
+
+{% include 'sheard/footer_refrens.html' %}
+</body>
+</html>

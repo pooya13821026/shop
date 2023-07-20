@@ -1,0 +1,74 @@
+{% extends 'sheard/index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ثبت نام{% endblock %}</title>
+</head>
+<body>
+{% block main %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                            <li>ثبت نام</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-register-area mtb-60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <h4>ثبت نام</h4>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="{% url 'register' %}" method="post">
+                                            {% csrf_token %}
+                                            {{ register.username.label_tag }}
+                                            {{ register.username }}
+                                            {{ register.username.errors }}
+
+                                            {{ register.password.label_tag }}
+                                            {{ register.password }}
+                                            {{ register.password.errors }}
+
+                                            {{ register.confirm_password.label_tag }}
+                                            {{ register.confirm_password }}
+                                            {{ register.confirm_password.errors }}
+
+                                            {{ register.email.label_tag }}
+                                            {{ register.email }}
+                                            {{ register.email.errors }}
+
+                                            <div class="button-box">
+                                                <div class="login-toggle-btn">
+                                                    <input type="checkbox">
+                                                    <a class="flote-none" href="javascript:void(0)">مرا به خاطر
+                                                        بسپار</a>
+                                                </div>
+                                                <button type="submit"><span>ثبت نام</span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>
