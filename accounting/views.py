@@ -1,9 +1,8 @@
 from django.contrib.auth import login, logout
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-
 from accounting.forms import *
 from accounting.models import MyUser
 
@@ -69,6 +68,9 @@ class LoginView(View):
                     ckeck_pass = user.check_password(pass_user)
                     if ckeck_pass:
                         login(request, user)
+                        next = request.POST.get('next')
+                        if next != "None":
+                            return HttpResponseRedirect(next)
                         return redirect(reverse('home'))
                     else:
                         login_form.add_error('password', 'گذرواژه اشتباه است')
@@ -131,7 +133,6 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return redirect(reverse('login'))
-
 
 # class RefereLoginView(View):
 #     def get(self, request):

@@ -47,6 +47,10 @@
                                                 <a href="{% url 'forgetpass' %}">بازیابی گذرواژه</a>
                                             </div>
                                             <button type="submit"><span>ورود</span></button>
+                                            <input type="hidden" name="next"
+                                                   value="{% if request.POST.next %}{{ requesrt.POST.next }}
+                                            {% else %}{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}
+                                            {% else %}/{% endif %}{% endif %}"/>
                                         </div>
                                     </form>
                                 </div>
