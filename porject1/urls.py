@@ -17,6 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from shop.sitemaps import ProductSitemap
+from blog.sitemaps import BlogSitemap
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps = {
+    'product': ProductSitemap,
+    'blog': BlogSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +36,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('dashbord/', include('dashbord.urls')),
     path('order/', include('order.urls')),
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
